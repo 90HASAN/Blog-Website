@@ -1,0 +1,19 @@
+<%- include("header.ejs") %>
+
+<div class="label">
+    <form action="/add" method="POST">
+        <div class="title-label text">
+            <label for="title"></label>
+            <input type="text" id="title-" name="title" placeholder="Title" required><br>
+        </div>
+        <div class="description-label text">
+            <label for="description"></label>
+            <textarea type="text" id="description-" name="description" placeholder="Description" required></textarea>
+        </div>
+        <button class="new button">
+            <h3>Add Blog</h3>
+        </button>
+    </form>
+</div>
+
+<%- include("footer.ejs") %>

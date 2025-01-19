@@ -1,0 +1,42 @@
+<%- include("header.ejs") %>
+
+<div class="text-show">
+    <% if (blogs.length >= 0) { %>
+        <% for (var i = 0; i < blogs.length; i++) { %>
+            <div class="inside-text">
+                <a href="#" class="blog-title">
+                <h1><%= (blogs[i]).title %></h1>
+            </a>
+            <p><%= (blogs[i]).description %></p>
+            <button class="del-button" onclick="deleteBlog('<%= i %>')">Delete</button>
+        </div>
+        <% } %>
+    <% } else { %>
+        <h1>No data</h1>
+    <% } %>
+
+    <script>
+        function deleteBlog(index) {
+            fetch(`/del-blog?index=${index}`, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/';
+                } else {
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</div>
+
+
+
+
+<%- include("footer.ejs") %>
